@@ -40,8 +40,6 @@ public class ShopService {
         orderRepo.getOrders().add(newOrder);
     }
 
-
-
     public List<Product> getOrder(int index){
         return orderRepo.get(index);
     }

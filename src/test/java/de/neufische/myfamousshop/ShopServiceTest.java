@@ -14,7 +14,6 @@ class ShopServiceTest {
         Product newProduct =  new Product("Socken", 1);
         ShopService newShop = new ShopService();
         newShop.addProduct(newProduct);
-        //System.out.println(newProduct);
         assertEquals(newShop.getProduct(1), newProduct);
 
     }
@@ -47,23 +46,27 @@ class ShopServiceTest {
 
 
     @Test
-    void expectsToReturnAllProductsWithProductSocken(){
+    void expectsToListAllProductsWithProductSocken(){
         ShopService newShop = new ShopService();
         Product newProduct =  new Product("Socken", 1);
         newShop.addProduct(newProduct);
 
-        System.out.println(newShop.listProducts());
+
+        assertEquals("[[ Socken, id: 1 ]], ", newShop.listProducts());
 
     }
 
     @Test
-    void expectsToReturnOrderOfProductOfId01(){
+    void expectsToReturnOrderOf2ProductsOfId01(){
         ShopService newShop = new ShopService();
         Product newProduct =  new Product("Socken", 1);
         newShop.addProduct(newProduct);
-        newShop.addOrder(1, new int[]{1, 1});
+        newShop.addProduct(new Product("Teddy", 2));
 
-        System.out.println(newShop.listOrders());
+        newShop.addOrder(1, new int[]{1, 1});
+        newShop.addOrder(2, new int[]{1, 2});
+
+        assertEquals("[orderID: 1 [[ Socken, id: 1 ], [ Socken, id: 1 ]], orderID: 2 [[ Socken, id: 1 ], [ Teddy, id: 2 ]]]", newShop.listOrders());
 
     }
 
