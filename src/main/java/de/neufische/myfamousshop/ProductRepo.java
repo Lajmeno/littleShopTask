@@ -17,7 +17,7 @@ public class ProductRepo {
                 return product;
             }
         }
-        throw new Exception("There ist no product of this id!");
+        throw new Exception("There is no product of this id!");
     }
 
     public void add(Product p){
