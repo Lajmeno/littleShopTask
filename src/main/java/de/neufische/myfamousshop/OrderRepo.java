@@ -26,6 +26,6 @@ public class OrderRepo {
 
     @Override
     public String toString() {
-        return orders + ", ";
+        return orders + "";
     }
 }

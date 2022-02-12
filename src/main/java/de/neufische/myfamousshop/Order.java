@@ -23,7 +23,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return  id +
-                ", products=" + products ;
+        return  "orderID: " + id +
+                " " + products ;
     }
 }
