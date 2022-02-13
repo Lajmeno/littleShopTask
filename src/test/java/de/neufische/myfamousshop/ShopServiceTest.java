@@ -40,8 +40,6 @@ class ShopServiceTest {
         ShopService newShop = new ShopService();
         newShop.addProduct(new ToyProduct("Snake", 3));
 
-        System.out.println(newShop.getProduct(3));
-
         assertEquals(Optional.empty(), newShop.getProduct(5));
     }
 
