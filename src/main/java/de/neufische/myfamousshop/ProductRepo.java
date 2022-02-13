@@ -2,6 +2,7 @@ package de.neufische.myfamousshop;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ProductRepo {
 
@@ -11,13 +12,13 @@ public class ProductRepo {
         this.products = new ArrayList<>();
     }
 
-    public Product get(int i) throws Exception {
+    public Optional<Product> get(int i) {
         for (Product product : products) {
             if (product.getId() == i) {
-                return product;
+                return Optional.of(product);
             }
         }
-        throw new Exception("There is no product of this id!");
+        return Optional.empty();
     }
 
     public void add(Product p){
