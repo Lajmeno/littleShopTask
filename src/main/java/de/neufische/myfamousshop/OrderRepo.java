@@ -2,6 +2,7 @@ package de.neufische.myfamousshop;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class OrderRepo {
 
@@ -15,13 +16,13 @@ public class OrderRepo {
         return orders;
     }
 
-    public List<Product> get(int index) throws Exception {
+    public Optional<List<Product>> get(int index) {
         for (Order order : orders){
             if(order.getId() == index){
-                return order.getProducts();
+                return Optional.of(order.getProducts());
             }
         }
-        throw new Exception("There is no order of this id!");
+        return Optional.empty();
     }
 
     @Override

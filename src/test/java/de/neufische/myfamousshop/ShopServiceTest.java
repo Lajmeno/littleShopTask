@@ -3,6 +3,7 @@ package de.neufische.myfamousshop;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +15,7 @@ class ShopServiceTest {
         Product newProduct =  new Product("Socken", 1);
         ShopService newShop = new ShopService();
         newShop.addProduct(newProduct);
-        assertEquals(newShop.getProduct(1), newProduct);
+        assertEquals(Optional.of(newProduct), newShop.getProduct(1));
 
     }
 
@@ -29,30 +30,28 @@ class ShopServiceTest {
         var products = new ArrayList<Product>();
         products.add(product1);
         products.add(product2);
-        assertEquals(products, newShop.getOrder(1));
+        assertEquals(Optional.of(products), newShop.getOrder(1));
 
 
     }
 
     @Test
-    void shouldThrowExceptionWhenGetProductIndexNotExists(){
+    void shouldReturnOptionalEmptyWhenGetProductIndexNotExists(){
         ShopService newShop = new ShopService();
         newShop.addProduct(new Product("Snake", 3));
 
-       assertThrows(Exception.class,() -> {
-            newShop.getProduct(5);
-        });
+        System.out.println(newShop.getProduct(3));
+
+        assertEquals(Optional.empty(), newShop.getProduct(5));
     }
 
     @Test
-    void shouldThrowExceptionWhenGetOrderIndexNotExists() throws Exception {
+    void shouldReturnOptionalEmptyWhenGetOrderIndexNotExists() throws Exception {
         ShopService newShop = new ShopService();
         newShop.addProduct(new Product("Snake", 3));
         newShop.addOrder(3, new int[]{3, 3});
 
-        assertThrows(Exception.class,() -> {
-            newShop.getOrder(1);
-        });
+        assertEquals(Optional.empty(), newShop.getOrder(5));
     }
 
     @Test

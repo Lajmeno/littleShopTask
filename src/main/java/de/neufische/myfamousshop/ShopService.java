@@ -1,6 +1,7 @@
 package de.neufische.myfamousshop;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ShopService {
 
@@ -16,7 +17,7 @@ public class ShopService {
         productRepo.add(p);
     }
 
-    public Product getProduct(int id) throws Exception {
+    public Optional<Product> getProduct(int id){
         return productRepo.get(id);
     }
 
@@ -46,7 +47,7 @@ public class ShopService {
         }
     }
 
-    public List<Product> getOrder(int index) throws Exception {
+    public Optional<List<Product>> getOrder(int index) {
         return orderRepo.get(index);
     }
 
