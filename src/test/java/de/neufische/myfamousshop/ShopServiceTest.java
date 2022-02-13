@@ -12,7 +12,7 @@ class ShopServiceTest {
 
     @Test
     void expectsToReturnTheProductOfId1() throws Exception {
-        Product newProduct =  new Product("Socken", 1);
+        Product newProduct =  new ClothProduct("Socken", 1);
         ShopService newShop = new ShopService();
         newShop.addProduct(newProduct);
         assertEquals(Optional.of(newProduct), newShop.getProduct(1));
@@ -21,8 +21,8 @@ class ShopServiceTest {
 
     @Test
     void expectsToReturnOrderOfId1() throws Exception {
-        Product product1 =  new Product("Socken", 1);
-        Product product2 =  new Product("Teddy", 2);
+        Product product1 =  new ClothProduct("Socken", 1);
+        Product product2 =  new ToyProduct("Teddy", 2);
         ShopService newShop = new ShopService();
         newShop.addProduct(product1);
         newShop.addProduct(product2);
@@ -38,7 +38,7 @@ class ShopServiceTest {
     @Test
     void shouldReturnOptionalEmptyWhenGetProductIndexNotExists(){
         ShopService newShop = new ShopService();
-        newShop.addProduct(new Product("Snake", 3));
+        newShop.addProduct(new ToyProduct("Snake", 3));
 
         System.out.println(newShop.getProduct(3));
 
@@ -48,7 +48,7 @@ class ShopServiceTest {
     @Test
     void shouldReturnOptionalEmptyWhenGetOrderIndexNotExists() throws Exception {
         ShopService newShop = new ShopService();
-        newShop.addProduct(new Product("Snake", 3));
+        newShop.addProduct(new ToyProduct("Snake", 3));
         newShop.addOrder(3, new int[]{3, 3});
 
         assertEquals(Optional.empty(), newShop.getOrder(5));
@@ -57,7 +57,7 @@ class ShopServiceTest {
     @Test
     void shouldThrowExceptionWhenAddOrderProductIndexNotExists() throws Exception {
         ShopService newShop = new ShopService();
-        newShop.addProduct(new Product("Snake", 3));
+        newShop.addProduct(new ToyProduct("Snake", 3));
 
         assertThrows(Exception.class,() -> {
             newShop.addOrder(3, new int[]{1, 2});
@@ -68,7 +68,7 @@ class ShopServiceTest {
     @Test
     void expectsToListAllProductsWithProductSocken(){
         ShopService newShop = new ShopService();
-        Product newProduct =  new Product("Socken", 1);
+        Product newProduct =  new ClothProduct("Socken", 1);
         newShop.addProduct(newProduct);
 
         assertEquals("[[ Socken, id: 1 ]], ", newShop.listProducts());
@@ -77,9 +77,9 @@ class ShopServiceTest {
     @Test
     void expectsToReturnOrderOf2ProductsOfId01() throws Exception {
         ShopService newShop = new ShopService();
-        Product newProduct =  new Product("Socken", 1);
+        Product newProduct =  new ClothProduct("Socken", 1);
         newShop.addProduct(newProduct);
-        newShop.addProduct(new Product("Teddy", 2));
+        newShop.addProduct(new ToyProduct("Teddy", 2));
 
         newShop.addOrder(1, new int[]{1, 1});
         newShop.addOrder(2, new int[]{1, 2});
