@@ -17,12 +17,6 @@ public class Order {
         return id;
     }
 
-    /*
-    public void add(Product p){
-        this.products.add(p);
-    }
-
-     */
 
     public List<Product> getProducts(){
         return products;

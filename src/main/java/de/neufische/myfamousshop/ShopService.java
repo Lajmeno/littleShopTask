@@ -17,9 +17,6 @@ public class ShopService {
         productRepo.add(p);
     }
 
-    public Optional<Product> getProduct(int id){
-        return productRepo.get(id);
-    }
 
     public String listProducts(){
         return productRepo.toString();
@@ -45,6 +42,10 @@ public class ShopService {
         }else{
             throw new Exception("Order can't be completed: One or more product-ids don't exist!");
         }
+    }
+
+    public Optional<Product> getProduct(int id){
+        return productRepo.get(id);
     }
 
     public Optional<List<Product>> getOrder(int index) {
